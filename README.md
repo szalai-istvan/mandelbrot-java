@@ -5,3 +5,5 @@ Mandelbrot set renderer written in Java
 ![kép](https://github.com/szalai-istvan/mandelbrot-java/assets/80052683/6ad9a25c-bd98-455d-aa37-7705b21721fc)
 ![kép](https://github.com/szalai-istvan/mandelbrot-java/assets/80052683/8ec2ec26-46ab-4ab7-9c90-847cf634edad)
 ![kép](https://github.com/szalai-istvan/mandelbrot-java/assets/80052683/3855d070-6990-49c8-bfe9-3b6336d5a6fb)
+![kép](https://github.com/szalai-istvan/mandelbrot-java/assets/80052683/6286f0ba-0c31-4d3f-8f8b-c4827bbee8e3)
+![kép](https://github.com/szalai-istvan/mandelbrot-java/assets/80052683/6d3f7360-cc02-4ae8-8fac-4aacdbf99688)
