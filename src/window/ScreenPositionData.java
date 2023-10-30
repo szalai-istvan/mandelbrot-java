@@ -1,0 +1,87 @@
+package window;
+
+import model.ComplexNumber;
+import model.ScaledBigDecimal;
+
+import java.awt.*;
+
+public class ScreenPositionData {
+    private static final double ZOOM_STEP = 1.2;
+    private static final ScaledBigDecimal ZOOM_STEP_BD = ScaledBigDecimal.valueOf(ZOOM_STEP);
+
+    private double initialZoom;
+    private ComplexNumber initialTopLeft;
+    private ComplexNumber topLeft;
+    private double zoomValue;
+    private int zoomCounter = 0;
+    private Dimension screenSize;
+
+    public static ScreenPositionData withTopLeftCoordinatesAndInitialZoom(
+            ComplexNumber topLeft,
+            Dimension screenSize,
+            double zoom) {
+        ScreenPositionData data = new ScreenPositionData();
+        data.initialTopLeft = topLeft;
+        data.topLeft = topLeft;
+        data.screenSize = screenSize;
+        data.initialZoom = zoom;
+        data.zoomValue = zoom;
+        return data;
+    }
+
+    public double zoomValue() {
+        return zoomValue;
+    }
+
+    public ScaledBigDecimal getZoomBD() {
+        return ScaledBigDecimal.valueOf(initialZoom)
+                .multiply(ZOOM_STEP_BD.pow(zoomCounter));
+    }
+
+    public ComplexNumber getTopLeft() {
+        return topLeft;
+    }
+
+    public ComplexNumber getCenter() {
+        return ComplexNumber.of(
+                topLeft.getReal() + screenSize.getWidth() / 2 / zoomValue,
+                topLeft.getImaginary() - screenSize.getHeight() / 2 / zoomValue
+        );
+    }
+
+    public void zoomIn() {
+        double centerReal = topLeft.getReal() + (screenSize.getWidth() / 2) / zoomValue;
+        double centerIm = topLeft.getImaginary() - (screenSize.getHeight() / 2) / zoomValue;
+        zoomCounter++;
+        zoomValue*=ZOOM_STEP;
+
+        recalculateTopLeft(centerReal, centerIm);
+    }
+
+    public void zoomOut() {
+        double centerReal = topLeft.getReal() + (screenSize.getWidth() / 2) / zoomValue;
+        double centerIm = topLeft.getImaginary() - (screenSize.getHeight() / 2) / zoomValue;
+        zoomCounter--;
+        zoomValue/=ZOOM_STEP;
+
+        recalculateTopLeft(centerReal, centerIm);
+    }
+
+    void recenter(double x, double y) {
+        double newCenterRe = topLeft.getReal() + x / zoomValue;
+        double newCenterIm = topLeft.getImaginary() - y / zoomValue;
+        recalculateTopLeft(newCenterRe, newCenterIm);
+    }
+
+    void reset() {
+        topLeft = initialTopLeft;
+        zoomValue = initialZoom;
+    }
+
+    private void recalculateTopLeft(double newCenterRe, double newCenterIm) {
+        topLeft = ComplexNumber.of(
+                newCenterRe - (screenSize.getWidth() / 2) / zoomValue,
+                newCenterIm + (screenSize.getHeight() / 2) / zoomValue
+        );
+    }
+}
