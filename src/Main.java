@@ -7,18 +7,6 @@ import static model.ScaledBigDecimal.ONE;
 
 public class Main {
     public static void main(String[] args) {
-/*        double primitiveTime = measure(10_000_000, () -> {
-            double d = 1.00 + 1.00;
-        });
-
-        double scaledBigDecimalTime = measure(10_000_000, () -> {
-            ScaledBigDecimal big = ONE.add(ONE);
-        });
-        BigDecimal bd = BigDecimal.ONE.setScale(10);
-        double bigDecimalTime = measure(10_000_000, () -> {
-            BigDecimal big = bd.add(bd);
-        });*/
-
         new Window();
     }
 
