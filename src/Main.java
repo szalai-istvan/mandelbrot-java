@@ -1,12 +1,10 @@
-import model.ScaledBigDecimal;
 import window.Window;
 
 import java.math.BigDecimal;
 
-import static model.ScaledBigDecimal.ONE;
-
 public class Main {
     public static void main(String[] args) {
+        measure(1_000_000, () -> BigDecimal.ONE.add(BigDecimal.ONE));
         new Window();
     }
 

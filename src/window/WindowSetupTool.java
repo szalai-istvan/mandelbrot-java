@@ -24,7 +24,7 @@ public class WindowSetupTool {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         window.setSize((int) screenSize.getWidth(), (int) screenSize.getHeight());
         double initialZoom = 240.;
-        double initX = screenSize.getWidth() / -1.8 / initialZoom;
+        double initX = screenSize.getWidth() / -2 / initialZoom;
         double initY = screenSize.getHeight() / 2 / initialZoom;
 
         window.screenPosition = ScreenPositionData.withTopLeftCoordinatesAndInitialZoom(

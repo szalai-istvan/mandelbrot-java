@@ -10,7 +10,8 @@ public class WindowInfoHints {
             "Click anywhere to focus at that area.",
             "Use your mouse scroll to zoom in and out.",
             "Press 'R' to reset to initial view.",
-            "Press 'H' to toggle the display of hints."
+            "Press 'H' to toggle the display of hints.",
+            "Press 'S' to save current render to file."
     );
 
     private static final Random R = new Random();

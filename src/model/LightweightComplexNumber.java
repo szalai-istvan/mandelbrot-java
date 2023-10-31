@@ -1,5 +1,7 @@
 package model;
 
+import java.math.BigDecimal;
+
 public class LightweightComplexNumber extends ComplexNumber {
 
     private final double real;
@@ -21,17 +23,20 @@ public class LightweightComplexNumber extends ComplexNumber {
     }
 
     @Override
-    public ScaledBigDecimal getRealBD() {
-        return ScaledBigDecimal.valueOf(real);
+    public BigDecimal getRealBD() {
+        return BigDecimalFactory.valueOf(real);
     }
 
     @Override
-    public ScaledBigDecimal getImaginaryBD() {
-        return ScaledBigDecimal.valueOf(imaginary);
+    public BigDecimal getImaginaryBD() {
+        return BigDecimalFactory.valueOf(imaginary);
     }
 
     @Override
     public ComplexNumber add(ComplexNumber complexNumber) {
+        if (complexNumber instanceof HighPrecisionComplexNumber) {
+            return complexNumber.add(this);
+        }
         return new LightweightComplexNumber(
                 getReal() + complexNumber.getReal(),
                 getImaginary() + complexNumber.getImaginary()
@@ -40,6 +45,9 @@ public class LightweightComplexNumber extends ComplexNumber {
 
     @Override
     public ComplexNumber subtract(ComplexNumber complexNumber) {
+        if (complexNumber instanceof HighPrecisionComplexNumber) {
+            return complexNumber.subtract(this);
+        }
         return new LightweightComplexNumber(
                 getReal() - complexNumber.getReal(),
                 getImaginary() - complexNumber.getImaginary()
@@ -48,6 +56,9 @@ public class LightweightComplexNumber extends ComplexNumber {
 
     @Override
     public ComplexNumber multiply(ComplexNumber complexNumber) {
+        if (complexNumber instanceof HighPrecisionComplexNumber) {
+            return complexNumber.multiply(this);
+        }
         //(a+bi)(c+di)=ac+adi+bci-bd
         double re = complexNumber.getReal();
         double im = complexNumber.getImaginary();

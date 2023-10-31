@@ -3,10 +3,21 @@ package window;
 import model.ComplexNumber;
 import renderer.calculator.colormapping.ColorMappingMode;
 import renderer.renderer.MandelbrotSetRenderer;
+import renderer.renderer.MandelbrotSetRendererFactory;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.UUID;
 
 import static java.awt.Color.WHITE;
 import static java.awt.Font.BOLD;
@@ -14,11 +25,13 @@ import static renderer.calculator.colormapping.ColorMappingMode.RED;
 
 public class Window extends JFrame {
 
+    private final DecimalFormat formatter;
     boolean displayHints = true;
     ScreenPositionData screenPosition;
     JPanel draw = new JPanel();
     MandelbrotSetRenderer renderer;
     ColorMappingMode colorMode = RED;
+    private String randomHint = "";
 
     public Window() {
         WindowSetupTool.forWindow(this)
@@ -33,6 +46,10 @@ public class Window extends JFrame {
                 .registerHintToggle()
                 .initialRender();
 
+        formatter = new DecimalFormat();
+        formatter.setGroupingUsed(true);
+        formatter.setMaximumFractionDigits(3);
+        formatter.setMinimumFractionDigits(3);
 
     }
 
@@ -40,9 +57,10 @@ public class Window extends JFrame {
         createRendererObject();
         new Thread(() -> {
             renderer.renderLowResolution()
+                    .ifActive(() -> displayInformation(false))
                     .pause()
                     .renderHighResolution()
-                    .ifActive(() -> displayInformation());
+                    .ifActive(() -> displayInformation(true));
         }).start();
     }
 
@@ -50,7 +68,7 @@ public class Window extends JFrame {
         createRendererObject();
         new Thread(() -> {
             renderer.renderHighResolution()
-                    .ifActive(() -> displayInformation());
+                    .ifActive(() -> displayInformation(true));
         }).start();
     }
 
@@ -90,15 +108,14 @@ public class Window extends JFrame {
         render();
     }
 
-
     private void createRendererObject() {
-        renderer = MandelbrotSetRenderer
+        renderer = MandelbrotSetRendererFactory
                 .ofScreenData(this.screenPosition)
                 .useColorMode(colorMode)
                 .useTarget(draw);
     }
 
-    private void displayInformation() {
+    private void displayInformation(boolean randomHintRefresh) {
         int offset = 20;
         Graphics graphics = draw.getGraphics();
         graphics.setFont(new Font("Consolas", BOLD, 18));
@@ -107,7 +124,7 @@ public class Window extends JFrame {
         graphics.drawString(getTopInformation(), offset, offset);
 
         if (displayHints) {
-            graphics.drawString(getRandomHint(), offset, getHeight() - offset / 2);
+            graphics.drawString(getRandomHint(randomHintRefresh), offset, getHeight() - offset / 2);
         }
         graphics.dispose();
     }
@@ -117,14 +134,17 @@ public class Window extends JFrame {
         ComplexNumber center = screenPosition.getCenter();
         return new StringBuilder()
                 .append("zoom: ")
-                .append(zoom)
+                .append(formatter.format(zoom))
                 .append("; focused on ")
                 .append(center)
                 .toString();
     }
 
-    private String getRandomHint() {
-        return WindowInfoHints.getRandomHint();
+    private String getRandomHint(boolean refresh) {
+        if (refresh) {
+            randomHint = WindowInfoHints.getRandomHint();
+        }
+        return randomHint;
     }
 }
 

@@ -1,12 +1,14 @@
 package model;
 
-public class HighPrecisionComplexNumber extends ComplexNumber {
-    private final ScaledBigDecimal real;
-    private final ScaledBigDecimal imaginary;
+import java.math.BigDecimal;
 
-    HighPrecisionComplexNumber(ScaledBigDecimal real, ScaledBigDecimal imaginary) {
-        this.real = real;
-        this.imaginary = imaginary;
+public class HighPrecisionComplexNumber extends ComplexNumber {
+    private final BigDecimal real;
+    private final BigDecimal imaginary;
+
+    HighPrecisionComplexNumber(BigDecimal real, BigDecimal imaginary) {
+        this.real = BigDecimalFactory.valueOf(real);
+        this.imaginary = BigDecimalFactory.valueOf(imaginary);
     }
 
     @Override
@@ -20,12 +22,12 @@ public class HighPrecisionComplexNumber extends ComplexNumber {
     }
 
     @Override
-    public ScaledBigDecimal getRealBD() {
+    public BigDecimal getRealBD() {
         return real;
     }
 
     @Override
-    public ScaledBigDecimal getImaginaryBD() {
+    public BigDecimal getImaginaryBD() {
         return imaginary;
     }
 
@@ -48,10 +50,10 @@ public class HighPrecisionComplexNumber extends ComplexNumber {
     @Override
     public ComplexNumber multiply(ComplexNumber complexNumber) {
         //(a+bi)(c+di)=ac+adi+bci-bd
-        ScaledBigDecimal ac = real.multiply(complexNumber.getRealBD());
-        ScaledBigDecimal bd = imaginary.multiply(complexNumber.getImaginaryBD());
-        ScaledBigDecimal ad = real.multiply(complexNumber.getImaginaryBD());
-        ScaledBigDecimal bc = imaginary.multiply(complexNumber.getRealBD());
+        BigDecimal ac = real.multiply(complexNumber.getRealBD());
+        BigDecimal bd = imaginary.multiply(complexNumber.getImaginaryBD());
+        BigDecimal ad = real.multiply(complexNumber.getImaginaryBD());
+        BigDecimal bc = imaginary.multiply(complexNumber.getRealBD());
 
         return new HighPrecisionComplexNumber(
                 ac.subtract(bd),
