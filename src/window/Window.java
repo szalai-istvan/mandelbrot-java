@@ -143,7 +143,7 @@ public class Window extends JFrame {
         ComplexNumber center = screenPosition.getCenter();
         return new StringBuilder()
                 .append("zoom: ")
-                .append(formatter.format(zoom))
+                .append(formatter.format(zoom).replace(",", "."))
                 .append("; focused on ")
                 .append(center)
                 .toString();
