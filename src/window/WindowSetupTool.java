@@ -105,6 +105,18 @@ public class WindowSetupTool {
         });
         return this;
     }
+    public WindowSetupTool registerSaveKey() {
+        window.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                char keyChar = e.getKeyChar();
+                if (keyChar == 's' || keyChar == 'S') {
+                    window.save();
+                }
+            }
+        });
+        return this;
+    }
 
     public WindowSetupTool registerResetKey() {
         window.addKeyListener(new KeyAdapter() {

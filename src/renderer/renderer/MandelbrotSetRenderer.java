@@ -53,7 +53,7 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
     }
 
     protected void render(int resolution) {
-        this.graphics = target.getGraphics();
+        this.graphics = getGraphics();
 
         int step = resolution / 2;
         COORDINATE_TRACKER_TYPE stepSize = getStepSize(step);
@@ -66,7 +66,7 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
         for (int x = 0; x < target.getWidth() - resolution; x += step) {
             for (int y = 0; y < target.getHeight() - resolution; y += step) {
                 if (!proceeding) {
-                    graphics.dispose();
+                    cancel();
                     return;
                 }
                 Color colorOfPoint = calculator.getColorOfPoint(coordinate);
@@ -77,10 +77,7 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
             coordinate = xStep(coordinate, stepSizeX);
         }
 
-        if (proceeding) {
-            graphics.drawImage(image, 0, 0, null);
-        }
-        graphics.dispose();
+        postRender(image);
     }
 
     protected abstract COORDINATE_TRACKER_TYPE getStepSize(int step);
@@ -91,6 +88,23 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
     protected abstract ComplexNumber topOfColumn(ComplexNumber coordinate, ComplexNumber topLeft);
     protected abstract ComplexNumber topLeft();
 
+    protected void cancel() {
+        graphics.dispose();
+    }
+
+    protected void postRender(BufferedImage image) {
+        if (proceeding) {
+            graphics.drawImage(image, 0, 0, null);
+        }
+        graphics.dispose();
+    }
+
+    protected Graphics getGraphics() {
+        if (target != null) {
+            return target.getGraphics();
+        }
+        return null;
+    }
 
     private void setColor(BufferedImage image, int x, int y, Color colorOfPoint, int resolution) {
         for (int oX = 0; oX < resolution; oX++) {

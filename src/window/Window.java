@@ -42,6 +42,7 @@ public class Window extends JFrame {
                 .registerNavigation()
                 .registerColorChanger()
                 .registerResetKey()
+                .registerSaveKey()
                 .registerExitKey()
                 .registerHintToggle()
                 .initialRender();
@@ -106,6 +107,14 @@ public class Window extends JFrame {
         renderer.stop();
         screenPosition.reset();
         render();
+    }
+
+    void save() {
+        MandelbrotSetRendererFactory
+                .saveToFile(screenPosition)
+                .useColorMode(colorMode)
+                .useTarget(draw)
+                .renderHighResolution();
     }
 
     private void createRendererObject() {

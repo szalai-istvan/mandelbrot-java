@@ -17,4 +17,9 @@ public class MandelbrotSetRendererFactory {
         return new LightweightRenderer(new LightWeightCalculator())
                 .useScreenPositionData(screenPositionData);
     }
+
+    public static MandelbrotSetRenderer saveToFile(ScreenPositionData screenPositionData) {
+        return new ToFileRenderer(new LightWeightCalculator())
+                .useScreenPositionData(screenPositionData);
+    }
 }
