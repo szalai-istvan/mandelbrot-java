@@ -5,7 +5,7 @@ For now can only go as deep as 10^16.
 ## Installation
 Type the following command: 
 ```
-$ mvn clean install
+mvn clean install
 ```
 to build an executable JAR file and a Windows executable .exe file. 
 
