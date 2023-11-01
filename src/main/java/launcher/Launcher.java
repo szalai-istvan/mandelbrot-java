@@ -1,10 +1,11 @@
+package launcher;
+
 import window.Window;
 
 import java.math.BigDecimal;
 
-public class Main {
+public class Launcher {
     public static void main(String[] args) {
-        measure(1_000_000, () -> BigDecimal.ONE.add(BigDecimal.ONE));
         new Window();
     }
 
