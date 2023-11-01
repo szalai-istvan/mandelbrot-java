@@ -11,7 +11,6 @@ import java.awt.image.BufferedImage;
 
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
-import static java.awt.image.BufferedImage.TYPE_3BYTE_BGR;
 
 public class InstructionsRenderer extends LightweightRenderer {
     InstructionsRenderer(ColorCalculator calculator) {
@@ -20,6 +19,14 @@ public class InstructionsRenderer extends LightweightRenderer {
 
     @Override
     public MandelbrotSetRenderer renderLowResolution() {
+        if (proceeding) {
+            render(100);
+        }
+        return this;
+    }
+
+    @Override
+    public MandelbrotSetRenderer renderHighResolution() {
         return this;
     }
 

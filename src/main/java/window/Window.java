@@ -46,7 +46,6 @@ public class Window extends JFrame {
         createRendererObject();
         new Thread(() -> {
             renderer.renderLowResolution()
-                    .ifActive(() -> displayInformation())
                     .pause()
                     .renderHighResolution()
                     .ifActive(() -> displayInformation());
