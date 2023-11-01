@@ -9,6 +9,8 @@ mvn clean install
 ```
 to build an executable JAR file and a Windows executable .exe file. 
 
+After launching, pressing the 'H' key displays the instructions on how to use the renderer. 
+
 ![image](https://github.com/szalai-istvan/mandelbrot-java/assets/80052683/4c945347-6345-4461-aead-09ad9f45b207)
 ![image](https://github.com/szalai-istvan/mandelbrot-java/assets/80052683/31b736f9-2950-4755-a9e9-864d34fb22ed)
 ![kép](https://github.com/szalai-istvan/mandelbrot-java/assets/80052683/b44c55ae-67f6-42db-a8e7-6327089ec087)
