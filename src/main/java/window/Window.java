@@ -149,7 +149,14 @@ public class Window extends JFrame {
 
         graphics.drawString(getTopInformation(), offset, offset);
 
-        graphics.drawString("Press 'H' to display instructions. ", offset, getHeight() - offset / 2);
+        String bottomInfoPanel;
+        if (displayInstructions) {
+            bottomInfoPanel = "Press 'H' to hide instructions. ";
+        } else {
+            bottomInfoPanel = "Press 'H' to display instructions. ";
+        }
+
+        graphics.drawString(bottomInfoPanel, offset, getHeight() - offset / 2);
         graphics.dispose();
     }
 

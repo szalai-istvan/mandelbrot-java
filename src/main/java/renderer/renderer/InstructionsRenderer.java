@@ -8,6 +8,8 @@ import window.WindowInfoHints;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
@@ -18,40 +20,48 @@ public class InstructionsRenderer extends LightweightRenderer {
     }
 
     @Override
-    public MandelbrotSetRenderer renderLowResolution() {
-        if (proceeding) {
-            render(100);
-        }
-        return this;
-    }
-
-    @Override
-    public MandelbrotSetRenderer renderHighResolution() {
-        return this;
-    }
-
-    @Override
     protected Color getColor(ComplexNumber coordinate) {
-        return BLACK;
+        Color color = super.getColor(coordinate);
+        return new Color(
+                color.getRed() / 2,
+                color.getGreen() / 2,
+                color.getBlue() / 2
+        );
     }
 
     @Override
     protected void postRender(BufferedImage image) {
-        if (proceeding) {
-            graphics.drawImage(image, 0, 0, null);
+        if (!proceeding) {
+            return;
         }
+
+        final int rowOffset = 27;
+        final int offsetX = 100;
+        final int offsetY = 120;
+
+        graphics.drawImage(image, 0, 0, null);
+
         graphics.setFont(Utilities.getFont());
         graphics.setColor(WHITE);
-        graphics.drawString("Instructions: ", 100, 100);
-        int line = 2;
+        graphics.drawString("Instructions: ", offsetX, offsetY);
+
+        int lineCount = 2;
         for (String instruction : WindowInfoHints.bulletPointList()) {
-            graphics.drawString(instruction, 100, 100 + line++ * 27);
+            graphics.drawString(instruction, offsetX, offsetY + lineCount++ * rowOffset);
         }
+
+        drawCredits();
         graphics.dispose();
     }
 
-    private String instructions() {
-        return "Instructions: \n\n" + WindowInfoHints.bulletPointList();
-
+    private void drawCredits() {
+        final int rowOffset = 27;
+        int lineCount = 0;
+        int x = target.getWidth() - 400;
+        int y = target.getHeight() - 20 - rowOffset * 3;
+        graphics.drawString("Made by: István Szalai", x, y + lineCount++ * rowOffset);
+        graphics.drawString("   https://github.com/szalai-istvan", x, y + lineCount++ * rowOffset);
+        graphics.drawString("   szalai.istvan95@gmail.com", x, y + lineCount * rowOffset);
     }
+
 }

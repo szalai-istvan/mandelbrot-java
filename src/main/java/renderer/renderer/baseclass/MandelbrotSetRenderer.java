@@ -4,6 +4,7 @@ import model.ComplexNumber;
 import renderer.calculator.ColorCalculator;
 import renderer.calculator.colormapping.ColorMappingMode;
 import renderer.calculator.colormapping.ColorPostProcessor;
+import renderer.renderer.MandelbrotSetRendererFactory;
 import window.ScreenPositionData;
 
 import javax.swing.*;
@@ -121,7 +122,7 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
         return null;
     }
 
-    private void setColor(BufferedImage image, int x, int y, Color colorOfPoint, int resolution) {
+    protected void setColor(BufferedImage image, int x, int y, Color colorOfPoint, int resolution) {
         for (int oX = 0; oX < resolution; oX++) {
             for (int oY = 0; oY < resolution; oY++) {
                 image.setRGB(x + oX, y + oY, colorOfPoint.getRGB());
@@ -130,8 +131,12 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
     }
 
     public MandelbrotSetRenderer pause() {
+        return pause(500);
+    }
+
+    protected MandelbrotSetRenderer pause(long millis) {
         long startTime = System.currentTimeMillis();
-        while(System.currentTimeMillis() - startTime < 1_500 && proceeding);
+        while(System.currentTimeMillis() - startTime < millis && proceeding);
         return this;
     }
 
