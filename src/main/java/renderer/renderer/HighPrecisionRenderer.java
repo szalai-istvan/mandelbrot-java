@@ -3,6 +3,7 @@ package renderer.renderer;
 import model.ComplexNumber;
 import model.BigDecimalFactory;
 import renderer.calculator.ColorCalculator;
+import renderer.renderer.baseclass.MandelbrotSetRenderer;
 
 import java.math.BigDecimal;
 

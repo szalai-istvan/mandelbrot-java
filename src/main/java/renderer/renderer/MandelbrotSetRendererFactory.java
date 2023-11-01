@@ -2,10 +2,8 @@ package renderer.renderer;
 
 import renderer.calculator.HighPrecisionCalculator;
 import renderer.calculator.LightWeightCalculator;
-import renderer.calculator.colormapping.ColorMappingMode;
+import renderer.renderer.baseclass.MandelbrotSetRenderer;
 import window.ScreenPositionData;
-
-import javax.swing.*;
 
 public class MandelbrotSetRendererFactory {
     public static MandelbrotSetRenderer ofScreenData(ScreenPositionData screenPositionData) {
@@ -21,5 +19,10 @@ public class MandelbrotSetRendererFactory {
     public static MandelbrotSetRenderer saveToFile(ScreenPositionData screenPositionData) {
         return new ToFileRenderer(new LightWeightCalculator())
                 .useScreenPositionData(screenPositionData);
+    }
+
+    public static MandelbrotSetRenderer instructionsRenderer(ScreenPositionData screenPosition) {
+        return new InstructionsRenderer(new LightWeightCalculator())
+                .useScreenPositionData(screenPosition);
     }
 }

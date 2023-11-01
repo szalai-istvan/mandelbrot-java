@@ -2,11 +2,8 @@ package renderer.renderer;
 
 import model.ComplexNumber;
 import renderer.calculator.ColorCalculator;
+import renderer.renderer.baseclass.MandelbrotSetRenderer;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
-import static java.awt.image.BufferedImage.TYPE_3BYTE_BGR;
 import static java.util.concurrent.Executors.newFixedThreadPool;
 
 public class LightweightRenderer extends MandelbrotSetRenderer<Double> {

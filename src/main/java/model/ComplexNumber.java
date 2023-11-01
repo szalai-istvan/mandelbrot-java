@@ -1,5 +1,7 @@
 package model;
 
+import utilities.Utilities;
+
 import java.math.BigDecimal;
 
 public abstract class ComplexNumber {
@@ -50,8 +52,8 @@ public abstract class ComplexNumber {
 
     public String toString() {
         String betweenCharacter = getImaginary() >= 0 ? "+" : "";
-        double re = Math.round(getReal()*1_000) / 1_000.;
-        double im = Math.round(getImaginary()*1_000) / 1_000.;
+        String re = Utilities.format(getReal());
+        String im = Utilities.format(getImaginary());
         return re + betweenCharacter + im + "i";
     }
 }

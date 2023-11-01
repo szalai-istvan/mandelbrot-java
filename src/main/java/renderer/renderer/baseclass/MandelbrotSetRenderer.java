@@ -1,8 +1,9 @@
-package renderer.renderer;
+package renderer.renderer.baseclass;
 
 import model.ComplexNumber;
 import renderer.calculator.ColorCalculator;
 import renderer.calculator.colormapping.ColorMappingMode;
+import renderer.calculator.colormapping.ColorPostProcessor;
 import window.ScreenPositionData;
 
 import javax.swing.*;
@@ -17,6 +18,7 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
     protected ColorCalculator calculator;
     protected Graphics graphics;
     protected boolean proceeding = true;
+    protected ColorPostProcessor postProcessor;
 
     protected MandelbrotSetRenderer(ColorCalculator calculator) {
         this.calculator = calculator;
@@ -39,6 +41,11 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
 
     public MandelbrotSetRenderer useColorMode(ColorMappingMode mode) {
         this.calculator.useColorMode(mode);
+        return this;
+    }
+
+    public MandelbrotSetRenderer usePostProcessor(ColorPostProcessor postProcessor) {
+        this.postProcessor = postProcessor;
         return this;
     }
 
@@ -69,7 +76,7 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
                     cancel();
                     return;
                 }
-                Color colorOfPoint = calculator.getColorOfPoint(coordinate);
+                Color colorOfPoint = getColor(coordinate);
                 setColor(image, x, y, colorOfPoint, resolution);
                 coordinate = yStep(coordinate, stepSizeY);
             }
@@ -78,6 +85,14 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
         }
 
         postRender(image);
+    }
+
+    protected Color getColor(ComplexNumber coordinate) {
+        Color colorOfPoint = calculator.getColorOfPoint(coordinate);
+        if (postProcessor == null) {
+            return colorOfPoint;
+        };
+        return postProcessor.postProcess(colorOfPoint);
     }
 
     protected abstract COORDINATE_TRACKER_TYPE getStepSize(int step);

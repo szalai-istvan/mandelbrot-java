@@ -55,6 +55,22 @@ public class WindowSetupTool {
         return this;
     }
 
+    WindowSetupTool registerContrastAdjuster() {
+        window.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int keyCode = e.getKeyCode();
+                if (keyCode == 38) {
+                    window.increaseContrast();
+                } else if (keyCode == 40) {
+                    window.decreaseContrast();
+                }
+            }
+        });
+        return this;
+    }
+
+
     WindowSetupTool registerNavigation() {
         window.addMouseListener(new MouseAdapter() {
             @Override
@@ -105,6 +121,7 @@ public class WindowSetupTool {
         });
         return this;
     }
+
     public WindowSetupTool registerSaveKey() {
         window.addKeyListener(new KeyAdapter() {
             @Override
@@ -137,7 +154,7 @@ public class WindowSetupTool {
             public void keyReleased(KeyEvent e) {
                 char keyChar = e.getKeyChar();
                 if (keyChar == 'h' || keyChar == 'H') {
-                    window.displayHints = !window.displayHints;
+                    window.toggleDisplayInstructions();
                 }
             }
         });

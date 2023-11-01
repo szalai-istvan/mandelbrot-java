@@ -1,7 +1,9 @@
 package launcher;
 
+import renderer.calculator.colormapping.ColorPostProcessor;
 import window.Window;
 
+import java.awt.*;
 import java.math.BigDecimal;
 
 public class Launcher {
