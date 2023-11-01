@@ -38,6 +38,9 @@ public class ColorPostProcessor {
             throw new IllegalArgumentException("Contrast should fall between -255 and 255. " + contrast + " is invalid. ");
         }
         contrast = newContrast;
+        if (contrast < 10 && contrast > -10) {
+            contrast = 0.00;
+        }
         correctionFactor = calculateCorrectionFactor();
     }
 
