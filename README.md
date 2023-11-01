@@ -7,7 +7,7 @@ Type the following command:
 ```
 mvn clean install
 ```
-to build an executable JAR file and a Windows executable .exe file. 
+to build an executable JAR file along with a Windows executable .exe file. 
 
 After launching, pressing the 'H' key displays the instructions on how to use the renderer. 
 
