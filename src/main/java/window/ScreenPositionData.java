@@ -60,15 +60,12 @@ public class ScreenPositionData {
     }
 
     public void zoomIn() {
-        if (zoomValue * ZOOM_STEP < 9E+15) {
             double centerReal = topLeft.getReal() + (screenSize.getWidth() / 2) / zoomValue;
             double centerIm = topLeft.getImaginary() - (screenSize.getHeight() / 2) / zoomValue;
             zoomCounter++;
             zoomValue *= ZOOM_STEP;
             adjustPrecisionToZoom(zoomValue);
             recalculateTopLeft(centerReal, centerIm);
-        }
-
     }
 
     public void zoomOut() {

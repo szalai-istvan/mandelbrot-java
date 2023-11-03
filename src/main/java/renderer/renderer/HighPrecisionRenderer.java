@@ -16,6 +16,14 @@ public class HighPrecisionRenderer extends MandelbrotSetRenderer<BigDecimal> {
     }
 
     @Override
+    public MandelbrotSetRenderer renderLowResolution() {
+        if (proceeding) {
+            render(40);
+        }
+        return this;
+    }
+
+    @Override
     protected BigDecimal getStepSize(int step) {
         BigDecimal stepBD = BigDecimalFactory.valueOf(step);
         return one().multiply(stepBD).divide(screenPositionData.getZoomBD(), context());

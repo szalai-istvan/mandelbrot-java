@@ -13,27 +13,30 @@ public enum ColorMappingMode {
     }, GREEN {
         @Override
         public Color getColor(int i) {
-            return new Color(i / 3, i, i / 3);
+            return new Color(
+                    3 * i / 5,
+                    i,
+                    2 * i / 5);
         }
     }, BLUE {
         @Override
         public Color getColor(int i) {
-            return new Color(i / 2, i / 2, i);
+            return new Color(i/3, i/2, i);
         }
     }, CYAN {
         @Override
         public Color getColor(int i) {
-            return new Color(0, i, i);
+            return new Color(i / 3, i, i);
         }
     }, YELLOW {
         @Override
         public Color getColor(int i) {
-            return new Color(i, i, 0);
+            return new Color(i, i, i / 3);
         }
     }, MAGENTA {
         @Override
         public Color getColor(int i) {
-            return new Color(i, 0, i);
+            return new Color(i, i/3, 2*i/3);
         }
     }, ORANGE {
         @Override
@@ -43,7 +46,12 @@ public enum ColorMappingMode {
     }, PINK {
         @Override
         public Color getColor(int i) {
-            return new Color(i, i / 3, 3 * i / 5);
+            return new Color(i, 2*i/3, i);
+        }
+    }, PURPLE {
+        @Override
+        public Color getColor(int i) {
+            return new Color(i / 2, i / 2, i);
         }
     }, HEAT_MAP {
         @Override

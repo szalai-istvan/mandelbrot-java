@@ -93,16 +93,23 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
         Color colorOfPoint = calculator.getColorOfPoint(coordinate);
         if (postProcessor == null) {
             return colorOfPoint;
-        };
+        }
+        ;
         return postProcessor.postProcess(colorOfPoint);
     }
 
     protected abstract COORDINATE_TRACKER_TYPE getStepSize(int step);
+
     protected abstract ComplexNumber stepSizeX(COORDINATE_TRACKER_TYPE stepSize);
+
     protected abstract ComplexNumber stepSizeY(COORDINATE_TRACKER_TYPE stepSize);
+
     protected abstract ComplexNumber xStep(ComplexNumber coordinate, ComplexNumber stepSizeX);
+
     protected abstract ComplexNumber yStep(ComplexNumber coordinate, ComplexNumber stepSizeY);
+
     protected abstract ComplexNumber topOfColumn(ComplexNumber coordinate, ComplexNumber topLeft);
+
     protected abstract ComplexNumber topLeft();
 
     protected void cancel() {
@@ -137,7 +144,7 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
 
     protected MandelbrotSetRenderer pause(long millis) {
         long startTime = System.currentTimeMillis();
-        while(System.currentTimeMillis() - startTime < millis && proceeding);
+        while (System.currentTimeMillis() - startTime < millis && proceeding) ;
         return this;
     }
 

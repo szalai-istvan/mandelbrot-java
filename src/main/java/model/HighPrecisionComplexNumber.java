@@ -33,7 +33,7 @@ public class HighPrecisionComplexNumber extends ComplexNumber {
 
     @Override
     public ComplexNumber add(ComplexNumber complexNumber) {
-        return new HighPrecisionComplexNumber(
+        return ComplexNumber.of(
                 getRealBD().add(complexNumber.getRealBD()),
                 getImaginaryBD().add(complexNumber.getImaginaryBD())
         );
@@ -41,7 +41,7 @@ public class HighPrecisionComplexNumber extends ComplexNumber {
 
     @Override
     public ComplexNumber subtract(ComplexNumber complexNumber) {
-        return new HighPrecisionComplexNumber(
+        return ComplexNumber.of(
                 getRealBD().subtract(complexNumber.getRealBD()),
                 getImaginaryBD().subtract(complexNumber.getImaginaryBD())
         );
@@ -55,7 +55,7 @@ public class HighPrecisionComplexNumber extends ComplexNumber {
         BigDecimal ad = real.multiply(complexNumber.getImaginaryBD());
         BigDecimal bc = imaginary.multiply(complexNumber.getRealBD());
 
-        return new HighPrecisionComplexNumber(
+        return ComplexNumber.of(
                 ac.subtract(bd),
                 ad.add(bc)
         );

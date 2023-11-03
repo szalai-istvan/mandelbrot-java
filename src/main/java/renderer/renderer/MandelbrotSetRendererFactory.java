@@ -7,7 +7,7 @@ import window.ScreenPositionData;
 
 public class MandelbrotSetRendererFactory {
     public static MandelbrotSetRenderer ofScreenData(ScreenPositionData screenPositionData) {
-        if (screenPositionData.zoomValue() > 1E+20) {
+        if (screenPositionData.zoomValue() > 1E+16) {
             return new HighPrecisionRenderer(new HighPrecisionCalculator())
                     .useScreenPositionData(screenPositionData);
         }

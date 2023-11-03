@@ -7,7 +7,7 @@ import static java.math.BigDecimal.*;
 import static java.math.RoundingMode.HALF_UP;
 
 public class BigDecimalFactory {
-    private static MathContext CONTEXT = new MathContext(10, HALF_UP);
+    private static MathContext CONTEXT = new MathContext(15, HALF_UP);
 
     public static BigDecimal zero() {
         return scale(ZERO);
@@ -26,8 +26,10 @@ public class BigDecimalFactory {
     }
 
     public static void adjustPrecisionToZoom(double zoomValue) {
-        int log10 = Double.valueOf(Math.log10(zoomValue)).intValue();
-        CONTEXT = new MathContext(log10, HALF_UP);
+        int log10 = Double.valueOf(Math.log10(zoomValue)).intValue() + 1;
+        CONTEXT = new MathContext(
+                Math.max(log10, 10),
+                HALF_UP);
     }
 
     private static BigDecimal scale(BigDecimal bigDecimal) {

@@ -37,7 +37,7 @@ public class LightweightComplexNumber extends ComplexNumber {
         if (complexNumber instanceof HighPrecisionComplexNumber) {
             return complexNumber.add(this);
         }
-        return new LightweightComplexNumber(
+        return ComplexNumber.of(
                 getReal() + complexNumber.getReal(),
                 getImaginary() + complexNumber.getImaginary()
         );
@@ -48,7 +48,7 @@ public class LightweightComplexNumber extends ComplexNumber {
         if (complexNumber instanceof HighPrecisionComplexNumber) {
             return complexNumber.subtract(this);
         }
-        return new LightweightComplexNumber(
+        return ComplexNumber.of(
                 getReal() - complexNumber.getReal(),
                 getImaginary() - complexNumber.getImaginary()
         );
@@ -67,7 +67,7 @@ public class LightweightComplexNumber extends ComplexNumber {
         double ad = real * im;
         double bc = imaginary * re;
 
-        return new LightweightComplexNumber(
+        return ComplexNumber.of(
                 ac - bd,
                 ad + bc
         );
