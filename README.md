@@ -1,6 +1,6 @@
 # mandelbrot-java
 Mandelbrot set renderer written in Java. 
-A short demonstration video is available [here](https://youtu.be/yMtUxFTxaYs?si=oUtetsEZscD11T8w).
+A short demonstration video is available [here](https://youtu.be/xfrZ_1rp5VY).
 
 ## Installation
 Type the following command: 
