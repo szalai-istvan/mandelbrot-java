@@ -1,7 +1,7 @@
 package window;
 
-import model.ComplexNumber;
 import model.BigDecimalFactory;
+import model.ComplexNumber;
 
 import java.awt.*;
 import java.math.BigDecimal;

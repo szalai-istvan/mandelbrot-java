@@ -2,17 +2,11 @@ package renderer.renderer;
 
 import model.ComplexNumber;
 import renderer.calculator.ColorCalculator;
-import renderer.renderer.baseclass.MandelbrotSetRenderer;
 import utilities.Utilities;
 import window.WindowInfoHints;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.awt.Color.BLACK;
-import static java.awt.Color.WHITE;
 
 public class InstructionsRenderer extends LightweightRenderer {
     InstructionsRenderer(ColorCalculator calculator) {
@@ -42,7 +36,7 @@ public class InstructionsRenderer extends LightweightRenderer {
         graphics.drawImage(image, 0, 0, null);
 
         graphics.setFont(Utilities.getFont());
-        graphics.setColor(WHITE);
+        graphics.setColor(colorMode.getTextColor());
         graphics.drawString("Instructions: ", offsetX, offsetY);
 
         int lineCount = 2;
@@ -58,10 +52,11 @@ public class InstructionsRenderer extends LightweightRenderer {
         final int rowOffset = 27;
         int lineCount = 0;
         int x = target.getWidth() - 400;
-        int y = target.getHeight() - 20 - rowOffset * 3;
+        int y = target.getHeight() - 20 - rowOffset * 4;
         graphics.drawString("Made by: István Szalai", x, y + lineCount++ * rowOffset);
         graphics.drawString("   https://github.com/szalai-istvan", x, y + lineCount++ * rowOffset);
         graphics.drawString("   szalai.istvan95@gmail.com", x, y + lineCount * rowOffset);
+
     }
 
 }

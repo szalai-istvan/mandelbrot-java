@@ -4,8 +4,6 @@ import model.ComplexNumber;
 import renderer.calculator.ColorCalculator;
 import renderer.renderer.baseclass.MandelbrotSetRenderer;
 
-import static java.util.concurrent.Executors.newFixedThreadPool;
-
 public class LightweightRenderer extends MandelbrotSetRenderer<Double> {
 
     LightweightRenderer(ColorCalculator calculator) {

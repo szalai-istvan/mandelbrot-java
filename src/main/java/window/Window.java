@@ -22,7 +22,6 @@ public class Window extends JFrame {
     ColorPostProcessor colorPostProcessor = new ColorPostProcessor(0.00);
 
     boolean  displayInstructions = false;
-    private String randomHint = "";
     JPanel draw = new JPanel();
 
     public Window() {
@@ -40,6 +39,10 @@ public class Window extends JFrame {
                 .registerHintToggle()
                 .initialRender();
 
+    }
+
+    public static void start() {
+        new Window();
     }
 
     public void render() {
@@ -145,7 +148,7 @@ public class Window extends JFrame {
         int offset = 20;
         Graphics graphics = draw.getGraphics();
         graphics.setFont(Utilities.getFont());
-        graphics.setColor(WHITE);
+        graphics.setColor(colorMode.getTextColor());
 
         graphics.drawString(getTopInformation(), offset, offset);
 
@@ -170,6 +173,8 @@ public class Window extends JFrame {
                 .append(center)
                 .append("; rendering contrast: ")
                 .append(colorPostProcessor)
+                .append("; color scheme: ")
+                .append(colorMode)
                 .toString();
     }
 }

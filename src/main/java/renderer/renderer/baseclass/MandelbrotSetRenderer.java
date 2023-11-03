@@ -4,7 +4,6 @@ import model.ComplexNumber;
 import renderer.calculator.ColorCalculator;
 import renderer.calculator.colormapping.ColorMappingMode;
 import renderer.calculator.colormapping.ColorPostProcessor;
-import renderer.renderer.MandelbrotSetRendererFactory;
 import window.ScreenPositionData;
 
 import javax.swing.*;
@@ -20,6 +19,7 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
     protected Graphics graphics;
     protected boolean proceeding = true;
     protected ColorPostProcessor postProcessor;
+    protected ColorMappingMode colorMode;
 
     protected MandelbrotSetRenderer(ColorCalculator calculator) {
         this.calculator = calculator;
@@ -41,6 +41,7 @@ public abstract class MandelbrotSetRenderer<COORDINATE_TRACKER_TYPE> {
 
 
     public MandelbrotSetRenderer useColorMode(ColorMappingMode mode) {
+        colorMode = mode;
         this.calculator.useColorMode(mode);
         return this;
     }

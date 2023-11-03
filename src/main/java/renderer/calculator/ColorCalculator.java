@@ -3,7 +3,7 @@ package renderer.calculator;
 import model.ComplexNumber;
 import renderer.calculator.colormapping.ColorMappingMode;
 
-import java.awt.Color;
+import java.awt.*;
 
 public abstract class ColorCalculator<THRESHOLD_TYPE> {
 

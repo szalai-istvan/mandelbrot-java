@@ -1,12 +1,6 @@
 package renderer.calculator;
 
-import renderer.calculator.colormapping.ColorMappingMode;
 import model.ComplexNumber;
-
-import java.awt.*;
-
-import static renderer.calculator.colormapping.ColorMappingMode.RED;
-import static java.awt.Color.WHITE;
 
 public class LightWeightCalculator extends ColorCalculator<Integer> {
 

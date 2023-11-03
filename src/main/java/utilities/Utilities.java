@@ -1,6 +1,5 @@
 package utilities;
 
-import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.text.DecimalFormat;
 
@@ -8,6 +7,7 @@ import static java.awt.Font.BOLD;
 
 public class Utilities {
     private static final DecimalFormat formatter;
+    private static final Font FONT = new Font("Consolas", BOLD, 18);
     static {
         formatter = new DecimalFormat();
         formatter.setGroupingUsed(true);
@@ -19,6 +19,6 @@ public class Utilities {
     }
 
     public static Font getFont() {
-        return new Font("Consolas", BOLD, 18);
+        return FONT;
     }
 }

@@ -1,7 +1,7 @@
 package renderer.calculator;
 
-import model.ComplexNumber;
 import model.BigDecimalFactory;
+import model.ComplexNumber;
 
 import java.math.BigDecimal;
 
