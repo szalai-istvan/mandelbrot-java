@@ -1,6 +1,6 @@
 # mandelbrot-java
 Mandelbrot set renderer written in Java. 
-[![YouTube](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg/1024px-YouTube_play_button_icon_%282013%E2%80%932017%29.svg.png)](https://youtu.be/yMtUxFTxaYs?si=oUtetsEZscD11T8w)
+[![YouTube](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg/1024px-YouTube_play_button_icon_%282013%E2%80%932017%29.svg.png =20x20)](https://youtu.be/yMtUxFTxaYs?si=oUtetsEZscD11T8w)
 
 ## Installation
 Type the following command: 
