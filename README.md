@@ -1,6 +1,5 @@
 # mandelbrot-java
-Mandelbrot set renderer written in Java. 
-For now can only go as deep as 10^16. 
+Mandelbrot set renderer written in Java.
 
 ## Installation
 Type the following command: 
