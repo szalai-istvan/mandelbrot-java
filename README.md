@@ -10,7 +10,7 @@ mvn clean install
 to build an executable JAR file along with a Windows executable .exe file. 
 Alternatively, this repository contains a pre-built .exe you can download and use. To download, click the button below, or navigate to the /binary folder in the repository. 
 
-[![Download zip](https://custom-icon-badges.demolab.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://raw.githubusercontent.com/szalai-istvan/mandelbrot-java/main/binary/Mandelbrot.exe)
+[![Download](https://custom-icon-badges.demolab.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download")](https://raw.githubusercontent.com/szalai-istvan/mandelbrot-java/main/binary/Mandelbrot.exe)
 
 When writing this project, I used JDK 16, and I suggest you use the same (or newer) version for running it. 
 After launching, pressing the 'H' key displays the instructions on how to use the renderer. 
